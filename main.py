@@ -10,10 +10,20 @@ def main():
 	# find the accounts we're going to use
 	for account in accounts:
 		if account["name"] == cfg.usage_account:
-			interesting_accounts["usage"] = {"accountNumber": account["accountNumber"], "available": account["available"]}
+			interesting_accounts["usage"] = {
+				"name": account["name"],
+				"accountNumber": account["accountNumber"],
+				"available": account["available"]
+			}
+
 			print("Found usage account: {}".format(account["name"]))
 		if account["name"] == cfg.from_account:
-			interesting_accounts["from"] = {"accountNumber": account["accountNumber"], "available": account["available"]}
+			interesting_accounts["from"] = {
+				"name": account["name"],
+				"accountNumber": account["accountNumber"],
+				"available": account["available"]
+			}
+
 			print("Found from account: {}".format(account["name"]))
 
 	# precautions
@@ -28,6 +38,7 @@ def main():
 
 	# this is where the fun begins
 	usage_available = interesting_accounts["usage"]["available"]
+	print("Your available balance on {} is: {}NOK".format(interesting_accounts["usage"]["name"], usage_available))
 	if usage_available <= cfg.available_threshold:
 		# attempt to fill the account up to the threshold
 		to_transfer = (cfg.available_threshold - usage_available)
