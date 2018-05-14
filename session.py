@@ -48,6 +48,6 @@ class SBankenSession:
 
 			# retry once
 			if retry:
-				return self.transfer(customer_id, retry=False)
+				return self.transfer(customer_id, from_accnumber, to_accnumber, amount, message=message, retry=False)
 
 			return False
