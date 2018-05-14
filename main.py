@@ -43,7 +43,7 @@ def main():
 			interesting_accounts["from"]["accountNumber"],
 			interesting_accounts["usage"]["accountNumber"],
 			to_transfer,
-			message="Disponibelt-vedlikehold (API)"
+			message="Konstant overføring (API)"
 		)
 
 		if success:
