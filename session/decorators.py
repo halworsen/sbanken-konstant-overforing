@@ -12,6 +12,6 @@ def ensure_token(func):
 			# retry once
 			if kwargs["retry"]:
 				kwargs["retry"] = False
-				return func(*args, **kwargs)
+				return ensured(*args, **kwargs)
 
 	return ensured
