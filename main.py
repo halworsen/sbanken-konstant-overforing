@@ -9,10 +9,11 @@ def main():
 
 	# find the accounts we're going to use
 	for account in accounts:
+		print(account)
 		if account["name"] == cfg.usage_account:
 			interesting_accounts["usage"] = {
 				"name": account["name"],
-				"accountNumber": account["accountNumber"],
+				"accountId": account["accountId"],
 				"available": account["available"]
 			}
 
@@ -20,7 +21,7 @@ def main():
 		if account["name"] == cfg.from_account:
 			interesting_accounts["from"] = {
 				"name": account["name"],
-				"accountNumber": account["accountNumber"],
+				"accountId": account["accountId"],
 				"available": account["available"]
 			}
 
@@ -51,8 +52,8 @@ def main():
 
 		success = session.transfer(
 			cfg.customer_id,
-			interesting_accounts["from"]["accountNumber"],
-			interesting_accounts["usage"]["accountNumber"],
+			interesting_accounts["from"]["accountId"],
+			interesting_accounts["usage"]["accountId"],
 			to_transfer,
 			message="Konstant overføring (API)"
 		)
