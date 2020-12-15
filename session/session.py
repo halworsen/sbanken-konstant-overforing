@@ -16,14 +16,13 @@ class SBankenSession:
 
 		self.refresh_session()
 
-	# no refresh tokens yet, grr
 	def refresh_session(self):
-		self.session.fetch_token(token_url='https://api.sbanken.no/identityserver/connect/token', auth=self.auth)
+		self.session.fetch_token(token_url='https://auth.sbanken.no/identityserver/connect/token', auth=self.auth)
 
 	@ensure_token
 	def get_accounts(self, customer_id, retry=True):
 		response = self.session.get(
-			"https://api.sbanken.no/bank/api/v1/Accounts",
+			"https://api.sbanken.no/exec.bank/api/v1/accounts",
 			headers={"customerId": customer_id}
 		).json()
 
@@ -37,7 +36,7 @@ class SBankenSession:
 		data = {"fromAccountId": from_accid, "toAccountId": to_accid, "message": message, "amount": amount}
 
 		response = self.session.post(
-			"https://api.sbanken.no/bank/api/v1/Transfers",
+			"https://api.sbanken.no/exec.bank/api/v1/transfers",
 			headers={"customerId": customer_id},
 			json=data
 		).json()

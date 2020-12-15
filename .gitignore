@@ -1,3 +1,5 @@
-__pycache__/*
-session/__pycache__/*
+__pycache__/
+session/__pycache__/
 cfg.py
+venv/
+.vscode/

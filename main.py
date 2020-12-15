@@ -9,7 +9,6 @@ def main():
 
 	# find the accounts we're going to use
 	for account in accounts:
-		print(account)
 		if account["name"] == cfg.usage_account:
 			interesting_accounts["usage"] = {
 				"name": account["name"],
@@ -48,14 +47,14 @@ def main():
 			to_transfer = (from_available - cfg.from_threshold)
 		to_transfer = round(to_transfer, 2)
 
-		print("Transfering {} from the \"from\" account to the usage account".format(to_transfer))
+		print("Transfering {} from {} to {}".format(to_transfer, interesting_accounts["from"]["name"], interesting_accounts["usage"]["name"]))
 
 		success = session.transfer(
 			cfg.customer_id,
 			interesting_accounts["from"]["accountId"],
 			interesting_accounts["usage"]["accountId"],
 			to_transfer,
-			message="Konstant overføring (API)"
+			message="Konstant overforing (API)"
 		)
 
 		if success:
