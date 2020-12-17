@@ -1,5 +1,5 @@
 __pycache__/
 session/__pycache__/
-cfg.py
+.env
 venv/
 .vscode/
