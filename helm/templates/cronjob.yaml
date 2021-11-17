@@ -1,0 +1,23 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ .Values.name }}-cron
+spec:
+  schedule: {{ .Values.schedule | quote }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: {{ .Values.podRestartPolicy }}
+          containers:
+          - name: {{ .Values.name }}-runner
+            image: {{ .Values.image.repository }}:{{ .Chart.AppVersion }}
+            imagePullPolicy: {{ .Values.image.pullPolicy }}
+            volumeMounts:
+              - name: sbko-config
+                mountPath: "/etc/sbko"
+                readOnly: true
+          volumes:
+            - name: sbko-config
+              secret:
+                secretName: {{ .Release.Name }}-secret

@@ -1,0 +1,8 @@
+name: sbko
+image:
+  repository: ""
+  pullPolicy: IfNotPresent
+
+schedule: "0 10-23 * * *"
+
+podRestartPolicy: Never
